@@ -16,7 +16,7 @@ namespace UI_tier
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Calendar());
+            Application.Run(new Form1());
         }
     }
 }

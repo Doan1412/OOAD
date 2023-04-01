@@ -26,9 +26,9 @@ namespace Bus_Tier
                 while (reader.Read())
                 {
                     User user = new User();
-                    user.Id = reader.GetSqlInt32(0).Value;
-                    user.Name = reader.GetString(1);
-                    user.Email = reader.GetString(2);
+                    user.Id = reader.GetInt32(reader.GetOrdinal("userId"));
+                    user.Name = reader.GetString(reader.GetOrdinal("username"));
+                    user.Email = reader.GetString(reader.GetOrdinal("email"));
                     list.Add(user);
                 }
                 connector.closeConnection();
@@ -36,6 +36,11 @@ namespace Bus_Tier
             catch (Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+                reader.Close();
             }
             return list;
         }
@@ -48,10 +53,10 @@ namespace Bus_Tier
                 reader = connector.getListById("getUserListAppointment", "@Appointmentid", id);
                 while (reader.Read())
                 {
-                    User user= new User();  
-                    user.Id=reader.GetSqlInt32(0).Value;  
-                    user.Name=reader.GetString(1);
-                    user.Email=reader.GetString(2);
+                    User user= new User();
+                    user.Id = reader.GetInt32(reader.GetOrdinal("userId"));
+                    user.Name=reader.GetString(reader.GetOrdinal("username"));
+                    user.Email=reader.GetString(reader.GetOrdinal("email"));
                     list.Add(user);
                 }
                 connector.closeConnection();
@@ -60,18 +65,12 @@ namespace Bus_Tier
             {
                 throw e;
             }
+            finally
+            {
+                connector.closeConnection();
+                reader.Close();
+            }
             return list;
-        }
-        public void addUserToAppointment(int userId, int appointmentId)
-        {
-            try
-            {
-                connector.addUserToAppointment(userId, appointmentId);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
         }
     }
 }

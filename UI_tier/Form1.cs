@@ -15,52 +15,21 @@ namespace UI_tier
 {
     public partial class Form1 : Form
     {
-        List<Appointment> appointments = new List<Appointment>();
-        List<User>users=new List<User>();
-        BSAppointment bsa = new BSAppointment();
+        List<User> users = new List<User>();
         BSUser bsu = new BSUser();
         public Form1()
         {
             InitializeComponent();
-            listApp.DisplayMember = "Title";
-            listUser.DisplayMember = "Name";
             users = bsu.getUser();
-            displayComboBox();
+            cbxUser.DataSource = users;
+            cbxUser.DisplayMember = "Name";
         }
-        private void listUser_SelectedIndexChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            User user = listUser.SelectedItem as User;
-            appointments.Clear();
-            appointments = bsa.getListAppointmentByUserId(user.Id);
-            displayListbox();
-        }
-        private void listApp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Appointment appointment = listApp.SelectedItem as Appointment;
-            List<User> users = bsu.getListUserByAppointmentId(appointment.Id);
-            textTitle.Text = appointment.Title;
-            textBox1.Text = appointment.StartTime.ToString("MM/dd/yyyy");
-            textBox2.Text = appointment.StartTime.ToString("hh:mm:ss tt"); ;
-            textBox3.Text = appointment.EndTime.ToString("hh:mm:ss tt");
-            textBox4.Text = string.Join(Environment.NewLine, users.Select(u => u.Name));
-            textBox5.Text = appointment.Description;
-        }
-        private void displayComboBox()
-        {
-            listUser.Items.Clear();
-            foreach(var user in users)
-            {
-                listUser.Items.Add(user);
-            }
-        }
-        private void displayListbox()
-        {
-            listApp.Items.Clear();
-            foreach (var item in appointments)
-            {
-                listApp.Items.Add(item);
-            }
-        }
+            User user = cbxUser.SelectedItem as User;
+            Calendar f = new Calendar(user);
+            f.ShowDialog();
 
+        }
     }
 }

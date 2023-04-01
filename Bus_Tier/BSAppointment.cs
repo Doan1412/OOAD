@@ -31,57 +31,97 @@ namespace Bus_Tier
                 reader = connector.getListById("GetAppointmentByUserId", "@Userid", id);
                 while (reader.Read())
                 {
-                    Appointment appointment = new Appointment();
-                    appointment.Id = reader.GetSqlInt32(0).Value;
-                    appointment.StartTime = reader.GetDateTime(1);
-                    appointment.EndTime = reader.GetDateTime(2);
-                    appointment.Title = reader.GetString(3);
-                    appointment.Description = reader.GetString(4);
+                    Appointment appointment = new Appointment
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        StartTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                        EndTime = reader.GetDateTime(reader.GetOrdinal("endTime")),
+                        Title = reader.GetString(reader.GetOrdinal("title")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        HostId = reader.GetInt32(reader.GetOrdinal("HostID")),
+                        Location = reader.GetString(reader.GetOrdinal("location")),
+                    };
                     list.Add(appointment);
                 }
+                reader.Close();
                 connector.closeConnection();
             }
             catch (Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
             }
             return list;
         }
         public List <Appointment> getListAppointmentByIdAndDate(int id,DateTime date)
         {
-            SqlDataReader reader = null;
             List<Appointment> list = new List<Appointment>();
             try
             {
                 BSUser l = new BSUser();
-                reader = connector.getListAppByIdDate(id,date);
+                SqlDataReader reader = connector.getListAppByIdDate(id, date);
                 while (reader.Read())
                 {
-                    Appointment appointment = new Appointment();
-                    appointment.Id = reader.GetSqlInt32(0).Value;
-                    appointment.StartTime = reader.GetDateTime(2);
-                    appointment.EndTime = reader.GetDateTime(3);
-                    appointment.Title = reader.GetString(1);
-                    appointment.Description = reader.GetString(4);
+                    Appointment appointment = new Appointment
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        StartTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                        EndTime = reader.GetDateTime(reader.GetOrdinal("endTime")),
+                        Title = reader.GetString(reader.GetOrdinal("title")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        HostId = reader.GetInt32(reader.GetOrdinal("HostID")),
+                        Location = reader.GetString(reader.GetOrdinal("location")),
+                    };
                     list.Add(appointment);
                 }
                 connector.closeConnection();
+                reader.Close();
             }
             catch (Exception e)
             {
                 throw e;
             }
+            finally
+            {
+                connector.closeConnection();
+            }
             return list;
         }
-        public int addAppointment(Appointment appointment)
+        public void addAppointment(Appointment appointment, List<int> ids)
         {
             try
             {
-                return connector.addAppointment(appointment);  
+                var AppID = connector.addAppointment(appointment);  
+                foreach (int id in ids)
+                {
+                    connector.addUserToAppointment(id, AppID);
+                }
             }
             catch ( Exception e)
             {
                 throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+            }
+        }
+        public void deleteAppointment(int id)
+        {
+            try
+            {
+                connector.getListById("deleteAppointment", "@AppointmentId", id);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
             }
         }
     }

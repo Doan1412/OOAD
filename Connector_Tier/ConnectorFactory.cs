@@ -69,7 +69,6 @@ namespace Connector_Tier
         {
             try
             {
-                DataTable dt = new DataTable();
                 using (SqlCommand cmd = new SqlCommand(proc, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -89,7 +88,6 @@ namespace Connector_Tier
         {
             try
             {
-                DataTable dt = new DataTable();
                 using (SqlCommand cmd = new SqlCommand("getAppByUserAndDate", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -114,10 +112,11 @@ namespace Connector_Tier
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@StartTime", appointment.StartTime);
-                    cmd.Parameters.AddWithValue("@EndTime",appointment.EndTime);
+                    cmd.Parameters.AddWithValue("@EndTime", appointment.EndTime);
                     cmd.Parameters.AddWithValue("@title", appointment.Title);
                     cmd.Parameters.AddWithValue("@Description", appointment.Description);
-                    cmd.Connection = conn;
+                    cmd.Parameters.AddWithValue("@HostID", appointment.HostId);
+                    cmd.Parameters.AddWithValue("@location", appointment.Location);
                     SqlParameter appointmentIdParam = new SqlParameter("@appointmentId", SqlDbType.Int);
                     appointmentIdParam.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(appointmentIdParam);

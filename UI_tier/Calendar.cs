@@ -33,6 +33,33 @@ namespace UI_tier
             lvAtt.View = View.Details;
             lvAtt.Columns.Add("Id");
             lvAtt.Columns.Add("Name");
+
+            checkOverlap();
+        }
+        private void checkOverlap()
+        {
+            List<Appointment> listAppNotAccYet = new List<Appointment>();
+            listAppNotAccYet = bsa.getListAppointmentNotAcceptedYet(user.Id);
+            foreach (Appointment appointment in listAppNotAccYet)
+            {
+                List<Appointment> listAppDate = new List<Appointment>();
+                string date = appointment.StartTime.ToShortDateString();
+                listAppDate = bsa.getListAppointmentByIdAndDateAndStatus(user.Id, DateTime.Parse(date),true);
+                Appointment app = listAppDate.FirstOrDefault(a => (a.StartTime <= appointment.StartTime && a.EndTime >= appointment.StartTime) || (a.StartTime <= appointment.EndTime && a.EndTime >= appointment.EndTime));
+                if (app != null)
+                {
+                    var res = MessageBox.Show("Bạn đã có lịch vào khoảng thời gian này, bạn có muốn thay thế lịch đã có", "Warning", MessageBoxButtons.YesNo);
+                    if (res == DialogResult.Yes)
+                    {
+                        bsa.updateStatus(user.Id, appointment.Id, true);
+                        bsa.deleteUserAppointment(user.Id, app.Id);
+                    }
+                    else
+                    {
+                        bsa.deleteUserAppointment(user.Id, appointment.Id);
+                    }
+                }
+            }
         }
         private void displayListbox()
         {
@@ -47,7 +74,6 @@ namespace UI_tier
             dateTimePicker3.Value = monthCalendar1.SelectionRange.Start;
             if (listUser.SelectedIndex != -1 && monthCalendar1.SelectionRange.Start != DateTime.MinValue)
             {
-                User user = listUser.SelectedItem as User;
                 appointments.Clear();
                 string date = monthCalendar1.SelectionRange.Start.ToShortDateString();
                 appointments = bsa.getListAppointmentByIdAndDate(user.Id, DateTime.Parse(date));
@@ -81,6 +107,21 @@ namespace UI_tier
         {
             DateTime StartTime = new DateTime(dateTimePicker3.Value.Year, dateTimePicker3.Value.Month, dateTimePicker3.Value.Day, dateTimePicker1.Value.Hour, dateTimePicker1.Value.Minute, dateTimePicker1.Value.Second);
             DateTime EndTime = new DateTime(dateTimePicker3.Value.Year, dateTimePicker3.Value.Month, dateTimePicker3.Value.Day, dateTimePicker2.Value.Hour, dateTimePicker2.Value.Minute, dateTimePicker2.Value.Second);
+            foreach (var appointment in appointments)
+            {
+                if (textTitle.Text == appointment.Title)
+                {
+                    appointment.StartTime = StartTime;
+                    appointment.EndTime = EndTime;
+                    appointment.Description = textBox5.Text;
+                    appointment.Location = textLoca.Text;
+                    appointment.HostId = user.Id;
+
+                    bsa.updateAppointment(appointment);
+                    appointments.Add(appointment);
+                    return;
+                }
+            }
             Appointment app = appointments.FirstOrDefault(a => (a.StartTime <= StartTime && a.EndTime >= StartTime) || (a.StartTime <= EndTime && a.EndTime >= EndTime));
             if (app != null)
             {
@@ -102,6 +143,7 @@ namespace UI_tier
                     {
                         ids.Add(Convert.ToInt32(item.SubItems[0].Text));
                     }
+                    ids.Add(user.Id);
                     bsa.addAppointment(appointment1, ids);
                     appointments.Remove(app);
                     appointments.Add(appointment1);
@@ -110,24 +152,6 @@ namespace UI_tier
             }
             else
             {
-                foreach (var appointment in appointments)
-                {
-                    if (textTitle.Text == appointment.Title)
-                    {
-                        appointment.StartTime = StartTime;
-                        appointment.EndTime = EndTime;
-                        appointment.Description = textBox5.Text;
-
-                        List<int> ids1 = new List<int>();
-                        foreach (ListViewItem item in lvAtt.Items)
-                        {
-                            ids1.Add(Convert.ToInt32(item.SubItems[0].Text));
-                        }
-                        bsa.addAppointment(appointment, ids1);
-                        appointments.Add(appointment);
-                        return;
-                    }
-                }
                 Appointment appointment1 = new Appointment
                 {
                     Title = textTitle.Text,
@@ -142,6 +166,7 @@ namespace UI_tier
                 {
                     ids.Add(Convert.ToInt32(item.SubItems[0].Text));
                 }
+                ids.Add(user.Id);
                 bsa.addAppointment(appointment1, ids);
                 appointments.Add(appointment1);
                 displayListbox();
@@ -162,11 +187,22 @@ namespace UI_tier
 
         private void dateTimePicker3_ValueChanged(object sender, EventArgs e)
         {
-            User user = listUser.SelectedItem as User;
             appointments.Clear();
             var date = dateTimePicker3.Value;
             appointments = bsa.getListAppointmentByIdAndDate(user.Id, date);
             displayListbox();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textTitle.Text = "";
+            textLoca.Text = "";
+            textBox5.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            lvAtt.Items.Clear();
         }
     }
 }

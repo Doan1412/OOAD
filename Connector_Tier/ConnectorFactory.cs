@@ -132,16 +132,82 @@ namespace Connector_Tier
             }
 
         }
-        public void addUserToAppointment(int userId, int appointmentId)
+        public void UserToAppointment(string proc,int userId, int appointmentId)
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("InsertAppointmentUser", conn))
+                using (SqlCommand cmd = new SqlCommand(proc, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@appointmentId",appointmentId);
                     cmd.Parameters.AddWithValue("@userId", userId);
                     cmd.Connection = conn;
+                    this.openConnection();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void updateStatus(int userId, int appointmentId, Boolean status)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("updateStatus", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@appointmentId", appointmentId);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Connection = conn;
+                    this.openConnection();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public SqlDataReader getListAppByIdDateStatus(int id, DateTime date, bool status)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("getListAppByUserAndDateAndStatus", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Userid", id);
+                    cmd.Parameters.AddWithValue("@status", status);
+                    cmd.Parameters.AddWithValue("@Appdate", date);
+                    cmd.Connection = conn;
+                    this.openConnection();
+                    reader = cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return reader;
+        }
+
+        public void updateAppointment(Appointment appointment)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("updateAppointment", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@appointmentId", appointment.Id);
+                    cmd.Parameters.AddWithValue("@StartTime", appointment.StartTime);
+                    cmd.Parameters.AddWithValue("@EndTime", appointment.EndTime);
+                    cmd.Parameters.AddWithValue("@title", appointment.Title);
+                    cmd.Parameters.AddWithValue("@Description", appointment.Description);
+                    cmd.Parameters.AddWithValue("@HostID", appointment.HostId);
+                    cmd.Parameters.AddWithValue("@location", appointment.Location);
                     this.openConnection();
                     cmd.ExecuteNonQuery();
                 }

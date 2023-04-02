@@ -90,6 +90,40 @@ namespace Bus_Tier
             }
             return list;
         }
+        public List<Appointment> getListAppointmentByIdAndDateAndStatus(int id, DateTime date,bool status)
+        {
+            List<Appointment> list = new List<Appointment>();
+            try
+            {
+                BSUser l = new BSUser();
+                SqlDataReader reader = connector.getListAppByIdDateStatus(id, date,status);
+                while (reader.Read())
+                {
+                    Appointment appointment = new Appointment
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        StartTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                        EndTime = reader.GetDateTime(reader.GetOrdinal("endTime")),
+                        Title = reader.GetString(reader.GetOrdinal("title")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        HostId = reader.GetInt32(reader.GetOrdinal("HostID")),
+                        Location = reader.GetString(reader.GetOrdinal("location")),
+                    };
+                    list.Add(appointment);
+                }
+                connector.closeConnection();
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+            }
+            return list;
+        }
         public void addAppointment(Appointment appointment, List<int> ids)
         {
             try
@@ -97,10 +131,26 @@ namespace Bus_Tier
                 var AppID = connector.addAppointment(appointment);  
                 foreach (int id in ids)
                 {
-                    connector.addUserToAppointment(id, AppID);
+                    connector.UserToAppointment("InsertAppointmentUser", id, AppID);
                 }
+                connector.updateStatus(appointment.HostId, AppID, true);
             }
             catch ( Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+            }
+        }
+        public void updateAppointment(Appointment appointment)
+        {
+            try
+            {
+                connector.updateAppointment(appointment);
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -116,6 +166,69 @@ namespace Bus_Tier
                 connector.getListById("deleteAppointment", "@AppointmentId", id);
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+            }
+        }
+        public List<Appointment> getListAppointmentNotAcceptedYet(int userId)
+        {
+            List<Appointment> list = new List<Appointment>();
+            try
+            {
+                SqlDataReader reader = connector.getListById("getAppNotAcceptedYet", "@userId", userId);
+                while (reader.Read())
+                {
+                    Appointment appointment = new Appointment
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        StartTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                        EndTime = reader.GetDateTime(reader.GetOrdinal("endTime")),
+                        Title = reader.GetString(reader.GetOrdinal("title")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        HostId = reader.GetInt32(reader.GetOrdinal("HostID")),
+                        Location = reader.GetString(reader.GetOrdinal("location")),
+                    };
+                    list.Add(appointment);
+                }
+                connector.closeConnection();
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+            }
+            return list;
+        }
+        public void updateStatus(int userId,int appointmentId,Boolean status)
+        {
+            try
+            {
+                connector.updateStatus(userId,appointmentId,status);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                connector.closeConnection();
+            }
+        }
+        public void deleteUserAppointment(int userId, int appointmentId)
+        {
+            try
+            {
+                connector.UserToAppointment("deleteUserAppointment", userId,appointmentId);
+            }
+            catch (Exception e)
             {
                 throw e;
             }

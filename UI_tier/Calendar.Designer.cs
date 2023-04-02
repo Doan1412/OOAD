@@ -55,6 +55,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.lvAtt = new System.Windows.Forms.ListView();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -302,12 +303,13 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(106, 40);
             this.button2.TabIndex = 0;
-            this.button2.Text = "Update";
+            this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(230, 51);
+            this.button4.Location = new System.Drawing.Point(194, 51);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(58, 35);
             this.button4.TabIndex = 4;
@@ -320,12 +322,13 @@
             this.lvAtt.HideSelection = false;
             this.lvAtt.Location = new System.Drawing.Point(3, 92);
             this.lvAtt.Name = "lvAtt";
-            this.lvAtt.Size = new System.Drawing.Size(287, 408);
+            this.lvAtt.Size = new System.Drawing.Size(313, 408);
             this.lvAtt.TabIndex = 18;
             this.lvAtt.UseCompatibleStateImageBehavior = false;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.button4);
             this.panel5.Controls.Add(this.lvAtt);
             this.panel5.Controls.Add(this.listUser);
@@ -334,6 +337,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(442, 503);
             this.panel5.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(258, 51);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(58, 35);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Calendar
             // 
@@ -385,5 +398,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ListView lvAtt;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button1;
     }
 }

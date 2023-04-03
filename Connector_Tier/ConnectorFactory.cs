@@ -104,6 +104,26 @@ namespace Connector_Tier
             }
             return reader;
         }
+        public SqlDataReader getListReminderByIdDate(int id, DateTime date)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("getAppByUserAndDate", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@Userid", id);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    cmd.Connection = conn;
+                    this.openConnection();
+                    reader = cmd.ExecuteReader();
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return reader;
+        }
         public int addAppointment (Appointment appointment)
         {
             try
@@ -217,5 +237,30 @@ namespace Connector_Tier
                 throw e;
             }
         }
+        public int addReminder( MyReminder reminder)
+        {
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand("addReminder", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userId", reminder.userId);
+                    cmd.Parameters.AddWithValue("@appointmentId", reminder.appointment.Id);
+                    cmd.Parameters.AddWithValue("@remindTime", reminder.getDateTime());
+                    SqlParameter remindIdParam = new SqlParameter("@remindId", SqlDbType.Int);
+                    remindIdParam.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(remindIdParam);
+                    this.openConnection();
+                    cmd.ExecuteNonQuery();
+                    int appointmentId = (int)remindIdParam.Value;
+                    return appointmentId;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

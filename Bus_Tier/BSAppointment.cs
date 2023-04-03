@@ -237,5 +237,35 @@ namespace Bus_Tier
                 connector.closeConnection();
             }
         }
+        public Appointment getAppointment(int id)
+        {
+            List<Appointment> list = new List<Appointment>();
+            try
+            {
+                SqlDataReader reader = connector.getListById("getAppointmentById", "@appointmentId", id);
+                while (reader.Read())
+                {
+                    Appointment appointment = new Appointment
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("id")),
+                        StartTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                        EndTime = reader.GetDateTime(reader.GetOrdinal("endTime")),
+                        Title = reader.GetString(reader.GetOrdinal("title")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        HostId = reader.GetInt32(reader.GetOrdinal("HostID")),
+                        Location = reader.GetString(reader.GetOrdinal("location")),
+                    };
+                    list.Add(appointment);
+                }
+                connector.closeConnection();
+                reader.Close();
+                return list[0];
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

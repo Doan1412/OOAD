@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BSAppointment.cs" />
+    <Compile Include="BSReminder.cs" />
     <Compile Include="BSUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

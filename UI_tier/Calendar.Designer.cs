@@ -166,7 +166,7 @@
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(188, 376);
+            this.textBox5.Location = new System.Drawing.Point(188, 329);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(291, 66);
@@ -183,7 +183,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(36, 376);
+            this.label6.Location = new System.Drawing.Point(36, 329);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.label6.Size = new System.Drawing.Size(140, 29);
@@ -335,7 +335,7 @@
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(816, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(442, 503);
+            this.panel5.Size = new System.Drawing.Size(621, 503);
             this.panel5.TabIndex = 4;
             // 
             // button1
@@ -352,7 +352,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1276, 547);
+            this.ClientSize = new System.Drawing.Size(1449, 547);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);

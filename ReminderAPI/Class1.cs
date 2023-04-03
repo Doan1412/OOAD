@@ -7,27 +7,27 @@ namespace ReminderAPI
     public interface Reminder
     {
         DateTime getDateTime();
-        Action ShowNoti  { get; set; }
+        Action OnReminded  { get; set; }
     }
     public static class Reminders
     {
         private static System.Timers.Timer timer;
-        public static Action action;
-        public static List<Reminder> list;
-        private static bool check = false;
+        private static List<Reminder> _list;
+        public static void SetListReminder(List<Reminder> list)
+        {
+            _list = list;
+        }
         public static void checkTime()
         {
-            if (list == null) return;
+            if (_list == null) return;
             DateTime currentDateTime = DateTime.Now;
-            foreach (var reminder in list)
+            var reminder = _list[0];
+            if (reminder.getDateTime() <= currentDateTime)
             {
-                if (reminder.getDateTime() <= currentDateTime && check == false)
-                {
-                    reminder.ShowNoti.Invoke();
-                    check = true;
-                }
-     
+                reminder.OnReminded.Invoke();
+                _list.RemoveAt(0);
             }
+
         }
         static Reminders()
         {

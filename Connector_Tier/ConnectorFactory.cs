@@ -11,7 +11,7 @@ namespace Connector_Tier
 {
     public class ConnectorFactory
     {
-        private string strConn = @"SERVER=LAPTOP-1JU8QPGU; Database= OOAD;User id ='kid'; pwd ='365471'";
+        private string strConn = @"Data Source=.\sqlexpress;Initial Catalog=OOAD;Integrated Security=True";
         private SqlCommand cmd = null;
         private SqlDataReader reader = null;
         private SqlConnection conn = null;

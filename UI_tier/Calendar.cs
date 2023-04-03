@@ -33,7 +33,9 @@ namespace UI_tier
             lvAtt.View = View.Details;
             lvAtt.Columns.Add("Id");
             lvAtt.Columns.Add("Name");
-
+            lvRemind.View = View.Details;
+            lvRemind.Columns.Add("", lvRemind.Width);
+            cbxRemind.DataSource = new List<string> { "Trước 5 phút", "Trước 30 phút", "Trước 1 tiếng", "Trước 1 ngày"};
             checkOverlap();
         }
         private void checkOverlap()
@@ -203,6 +205,21 @@ namespace UI_tier
         private void button1_Click(object sender, EventArgs e)
         {
             lvAtt.Items.Clear();
+        }
+
+        private void btnRemind_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem it in lvRemind.Items)
+            {
+                if (it.SubItems[0].Text == cbxRemind.SelectedItem.ToString()) return;
+            }    
+            ListViewItem item = new ListViewItem(cbxRemind.SelectedItem.ToString());
+            lvRemind.Items.Add(item);
+        }
+
+        private void lvRemind_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            lvRemind.Items.Remove(lvRemind.SelectedItems[0]);
         }
     }
 }

@@ -19,6 +19,43 @@ namespace Bus_Tier
             connector = new ConnectorFactory();
 
         }
+        public List<MyReminder> getListReminderByUserIdAndDate(int userId, DateTime date)
+        {
+            List<MyReminder> list = new List<MyReminder>();
+            try
+            {
+                SqlDataReader reader = connector.getListReminderByIdDate(userId, date);
+                while (reader.Read())
+                {
+                    MyReminder reminder = new MyReminder()
+                    {
+                        reminderId = reader.GetInt32(reader.GetOrdinal("id")),
+                        remindTime = reader.GetDateTime(reader.GetOrdinal("remindTime")),
+                        userId = reader.GetInt32(reader.GetOrdinal("userId")),
+                    };
+                    Appointment appointment = new Appointment
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("appointmentId")),
+                        StartTime = reader.GetDateTime(reader.GetOrdinal("startTime")),
+                        EndTime = reader.GetDateTime(reader.GetOrdinal("endTime")),
+                        Title = reader.GetString(reader.GetOrdinal("title")),
+                        Description = reader.GetString(reader.GetOrdinal("description")),
+                        HostId = reader.GetInt32(reader.GetOrdinal("HostID")),
+                        Location = reader.GetString(reader.GetOrdinal("location")),
+                    };
+                    reminder.appointment = appointment;
+                    list.Add(reminder);
+                }
+                connector.closeConnection();
+                reader.Close();
+                return list;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         public List<Reminder> getListReminderByUserId(int userId, DateTime date)
         {
             List<Reminder> list = new List<Reminder>();

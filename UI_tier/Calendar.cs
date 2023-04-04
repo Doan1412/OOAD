@@ -110,6 +110,31 @@ namespace UI_tier
             }
             //textBox4.Text = string.Join(Environment.NewLine, users.Select(u => u.Name));
             textBox5.Text = appointment.Description;
+            List<MyReminder>myReminders= bsr.getListReminderByUserIdAndDate(user.Id, appointment.StartTime);
+            //"Trước 5 phút", "Trước 30 phút", "Trước 1 tiếng", "Trước 1 ngày"
+            lvRemind.Items.Clear();
+            foreach (MyReminder reminder in myReminders)
+            {
+                if(reminder.appointment.Id == appointment.Id)
+                {
+                    if(-reminder.remindTime.Minute + appointment.StartTime.Minute == 5)
+                    {
+                        lvRemind.Items.Add(new ListViewItem("Trước 5 phút"));
+                    }
+                    else if(-reminder.remindTime.Minute + appointment.StartTime.Minute == 30)
+                    {
+                        lvRemind.Items.Add(new ListViewItem("Trước 30 phút"));
+                    } 
+                    else if (-reminder.remindTime.Hour + appointment.StartTime.Hour == 1)
+                    {
+                        lvRemind.Items.Add(new ListViewItem("Trước 1 tiếng"));
+                    }
+                    else if (appointment.StartTime.Day - reminder.remindTime.Day == 1)
+                    {
+                        lvRemind.Items.Add(new ListViewItem("Trước 1 ngày"));
+                    }
+                }
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -216,12 +241,42 @@ namespace UI_tier
 
         private void btnRemind_Click(object sender, EventArgs e)
         {
+            Appointment appointment = listApp.SelectedItem as Appointment;
             foreach(ListViewItem it in lvRemind.Items)
             {
                 if (it.SubItems[0].Text == cbxRemind.SelectedItem.ToString()) return;
             }    
             ListViewItem item = new ListViewItem(cbxRemind.SelectedItem.ToString());
             lvRemind.Items.Add(item);
+            MyReminder reminder = new MyReminder();
+            reminder.remindTime = DateTime.Now;
+            reminder.appointment = appointment;
+            switch (cbxRemind.SelectedIndex)
+            {
+                case 0:
+                    {
+                        reminder.remindTime = new DateTime(appointment.StartTime.Year, appointment.StartTime.Month, appointment.StartTime.Day, appointment.StartTime.Hour, appointment.StartTime.Minute - 5, 0);
+                        break;
+                    }
+                case 1:
+                    {
+                        reminder.remindTime = new DateTime(appointment.StartTime.Year, appointment.StartTime.Month, appointment.StartTime.Day, appointment.StartTime.Hour, appointment.StartTime.Minute - 30, 0);
+                        break;
+                    }
+                case 2:
+                    {
+                        reminder.remindTime = new DateTime(appointment.StartTime.Year, appointment.StartTime.Month, appointment.StartTime.Day, appointment.StartTime.Hour -1, appointment.StartTime.Minute, 0);
+                        break;
+                    }
+                case 3:
+                    {
+                        reminder.remindTime = new DateTime(appointment.StartTime.Year, appointment.StartTime.Month, appointment.StartTime.Day-1, appointment.StartTime.Hour, appointment.StartTime.Minute, 0);
+                        break;
+                    }
+
+            }
+            reminder.userId = user.Id;
+            bsr.addReminder(reminder);
         }
 
         private void lvRemind_MouseDoubleClick(object sender, MouseEventArgs e)

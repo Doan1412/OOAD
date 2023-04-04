@@ -1,5 +1,6 @@
 ﻿using Bus_Tier;
 using Model;
+using ReminderAPI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,8 @@ namespace UI_tier
         List<User> usersCalendar = new List<User>();
         BSAppointment bsa = new BSAppointment();
         BSUser bsu = new BSUser();
+        BSReminder bsr = new BSReminder();
+        private List<Reminder> myReminder;
         public Calendar(User user)
         {
             InitializeComponent();
@@ -36,6 +39,10 @@ namespace UI_tier
             lvRemind.View = View.Details;
             lvRemind.Columns.Add("", lvRemind.Width);
             cbxRemind.DataSource = new List<string> { "Trước 5 phút", "Trước 30 phút", "Trước 1 tiếng", "Trước 1 ngày"};
+
+            myReminder = bsr.getListReminderByUserId(user.Id, DateTime.Now);
+            myReminder.OrderBy(x => x.remindTime);
+            Reminders.SetListReminder(myReminder);
             checkOverlap();
         }
         private void checkOverlap()

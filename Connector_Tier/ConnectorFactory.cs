@@ -11,7 +11,7 @@ namespace Connector_Tier
 {
     public class ConnectorFactory
     {
-        private string strConn = @"Data Source=.\sqlexpress;Initial Catalog=OOAD;Integrated Security=True";
+        private string strConn = @"SERVER=LAPTOP-1JU8QPGU; Database= OOAD;User id ='kid'; pwd ='365471'";
         private SqlCommand cmd = null;
         private SqlDataReader reader = null;
         private SqlConnection conn = null;
@@ -108,7 +108,7 @@ namespace Connector_Tier
         {
             try
             {
-                using (SqlCommand cmd = new SqlCommand("getAppByUserAndDate", conn))
+                using (SqlCommand cmd = new SqlCommand("getReminderByUserIdAndDate", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Userid", id);
@@ -246,7 +246,7 @@ namespace Connector_Tier
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@userId", reminder.userId);
                     cmd.Parameters.AddWithValue("@appointmentId", reminder.appointment.Id);
-                    cmd.Parameters.AddWithValue("@remindTime", reminder.getDateTime());
+                    cmd.Parameters.AddWithValue("@remindTime", reminder.remindTime);
                     SqlParameter remindIdParam = new SqlParameter("@remindId", SqlDbType.Int);
                     remindIdParam.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(remindIdParam);

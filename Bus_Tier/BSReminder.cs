@@ -1,5 +1,6 @@
 ﻿using Connector_Tier;
 using Model;
+using ReminderAPI;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -9,17 +10,18 @@ using System.Threading.Tasks;
 
 namespace Bus_Tier
 {
-    internal class BSReminder
+    public class BSReminder
     {
         ConnectorFactory connector = null;
 
-        public BSReminder(ConnectorFactory connector)
+        public BSReminder()
         {
-            this.connector = connector;
+            connector = new ConnectorFactory();
+
         }
-        public List<MyReminder> getListReminderByUserId(int userId, DateTime date)
+        public List<Reminder> getListReminderByUserId(int userId, DateTime date)
         {
-            List<MyReminder> list = new List<MyReminder>();
+            List<Reminder> list = new List<Reminder>();
             try
             {
                 SqlDataReader reader = connector.getListReminderByIdDate(userId, date);

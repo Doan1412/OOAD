@@ -1,33 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ReminderAPI
 {
     public interface Reminder
     {
-        DateTime getDateTime();
-        Action OnReminded  { get; set; }
+        DateTime remindTime { get; set; }
+        Action OnReminded { get; set; }
     }
-    public static class Reminders
+    public class Reminders
     {
         private static System.Timers.Timer timer;
-        private static List<Reminder> _list;
+        private static List<Reminder> _list = null;
         public static void SetListReminder(List<Reminder> list)
         {
             _list = list;
         }
         public static void checkTime()
         {
-            if (_list == null) return;
+            if (_list == null || _list.Count == 0) return;
             DateTime currentDateTime = DateTime.Now;
-            var reminder = _list[0];
-            if (reminder.getDateTime() <= currentDateTime)
+            var reminder = _list.ElementAtOrDefault(0);
+            if (reminder != null)
             {
-                reminder.OnReminded.Invoke();
                 _list.RemoveAt(0);
+                reminder.OnReminded.Invoke();
             }
-
         }
         static Reminders()
         {

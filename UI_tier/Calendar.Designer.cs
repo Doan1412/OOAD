@@ -55,11 +55,11 @@
             this.button4 = new System.Windows.Forms.Button();
             this.lvAtt = new System.Windows.Forms.ListView();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbxRemind = new System.Windows.Forms.ComboBox();
-            this.lvRemind = new System.Windows.Forms.ListView();
             this.btnRemind = new System.Windows.Forms.Button();
+            this.lvRemind = new System.Windows.Forms.ListView();
+            this.cbxRemind = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -73,20 +73,18 @@
             this.panel1.Controls.Add(this.monthCalendar1);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(-3, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(903, 692);
+            this.panel1.Size = new System.Drawing.Size(803, 554);
             this.panel1.TabIndex = 0;
             // 
             // listApp
             // 
             this.listApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listApp.FormattingEnabled = true;
-            this.listApp.ItemHeight = 29;
-            this.listApp.Location = new System.Drawing.Point(3, 329);
-            this.listApp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listApp.ItemHeight = 25;
+            this.listApp.Location = new System.Drawing.Point(3, 263);
             this.listApp.Name = "listApp";
-            this.listApp.Size = new System.Drawing.Size(294, 323);
+            this.listApp.Size = new System.Drawing.Size(262, 254);
             this.listApp.TabIndex = 2;
             this.listApp.SelectedIndexChanged += new System.EventHandler(this.listApp_SelectedIndexChanged);
             // 
@@ -105,29 +103,27 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(297, 5);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel3.Location = new System.Drawing.Point(264, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(606, 556);
+            this.panel3.Size = new System.Drawing.Size(539, 445);
             this.panel3.TabIndex = 1;
             // 
             // textLoca
             // 
-            this.textLoca.Location = new System.Drawing.Point(212, 292);
-            this.textLoca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textLoca.Location = new System.Drawing.Point(188, 234);
             this.textLoca.Multiline = true;
             this.textLoca.Name = "textLoca";
-            this.textLoca.Size = new System.Drawing.Size(327, 76);
+            this.textLoca.Size = new System.Drawing.Size(291, 62);
             this.textLoca.TabIndex = 17;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(40, 318);
+            this.label8.Location = new System.Drawing.Point(36, 254);
             this.label8.Name = "label8";
             this.label8.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label8.Size = new System.Drawing.Size(129, 36);
+            this.label8.Size = new System.Drawing.Size(109, 29);
             this.label8.TabIndex = 16;
             this.label8.Text = "Location";
             // 
@@ -135,10 +131,9 @@
             // 
             this.dateTimePicker3.CustomFormat = "MM/dd/yyyy";
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(212, 98);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dateTimePicker3.Location = new System.Drawing.Point(188, 78);
             this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(327, 26);
+            this.dateTimePicker3.Size = new System.Drawing.Size(291, 22);
             this.dateTimePicker3.TabIndex = 15;
             this.dateTimePicker3.ValueChanged += new System.EventHandler(this.dateTimePicker3_ValueChanged);
             // 
@@ -146,60 +141,56 @@
             // 
             this.dateTimePicker2.CustomFormat = "\"HH:mm\"";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(212, 241);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dateTimePicker2.Location = new System.Drawing.Point(188, 193);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.ShowUpDown = true;
-            this.dateTimePicker2.Size = new System.Drawing.Size(327, 26);
+            this.dateTimePicker2.Size = new System.Drawing.Size(291, 22);
             this.dateTimePicker2.TabIndex = 14;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "\"HH:mm\"";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker1.Location = new System.Drawing.Point(212, 172);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dateTimePicker1.Location = new System.Drawing.Point(188, 138);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(327, 26);
+            this.dateTimePicker1.Size = new System.Drawing.Size(291, 22);
             this.dateTimePicker1.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(40, 89);
+            this.label7.Location = new System.Drawing.Point(36, 71);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(76, 36);
+            this.label7.Size = new System.Drawing.Size(66, 29);
             this.label7.TabIndex = 11;
             this.label7.Text = "Date";
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(212, 411);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox5.Location = new System.Drawing.Point(188, 329);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(327, 82);
+            this.textBox5.Size = new System.Drawing.Size(291, 66);
             this.textBox5.TabIndex = 10;
             // 
             // textTitle
             // 
-            this.textTitle.Location = new System.Drawing.Point(212, 16);
-            this.textTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textTitle.Location = new System.Drawing.Point(188, 13);
             this.textTitle.Name = "textTitle";
-            this.textTitle.Size = new System.Drawing.Size(327, 26);
+            this.textTitle.Size = new System.Drawing.Size(291, 22);
             this.textTitle.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(40, 411);
+            this.label6.Location = new System.Drawing.Point(36, 329);
             this.label6.Name = "label6";
             this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label6.Size = new System.Drawing.Size(165, 36);
+            this.label6.Size = new System.Drawing.Size(140, 29);
             this.label6.TabIndex = 5;
             this.label6.Text = "Description";
             // 
@@ -207,20 +198,20 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(68, 316);
+            this.label4.Location = new System.Drawing.Point(60, 253);
             this.label4.Name = "label4";
             this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(0, 36);
+            this.label4.Size = new System.Drawing.Size(0, 29);
             this.label4.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(40, 241);
+            this.label3.Location = new System.Drawing.Point(36, 193);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label3.Size = new System.Drawing.Size(131, 36);
+            this.label3.Size = new System.Drawing.Size(114, 29);
             this.label3.TabIndex = 2;
             this.label3.Text = "End time";
             // 
@@ -228,10 +219,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 165);
+            this.label2.Location = new System.Drawing.Point(36, 132);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label2.Size = new System.Drawing.Size(139, 36);
+            this.label2.Size = new System.Drawing.Size(122, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "Start time";
             // 
@@ -239,17 +230,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 12);
+            this.label1.Location = new System.Drawing.Point(36, 10);
             this.label1.Name = "label1";
             this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(71, 36);
+            this.label1.Size = new System.Drawing.Size(61, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Title";
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(3, 48);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.monthCalendar1.Location = new System.Drawing.Point(3, 38);
             this.monthCalendar1.MaxSelectionCount = 1;
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
@@ -257,20 +247,19 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(3, 4);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(295, 45);
+            this.panel2.Size = new System.Drawing.Size(262, 36);
             this.panel2.TabIndex = 0;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(3, 12);
+            this.label5.Location = new System.Drawing.Point(3, 10);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label5.Size = new System.Drawing.Size(134, 36);
+            this.label5.Size = new System.Drawing.Size(114, 29);
             this.label5.TabIndex = 4;
             this.label5.Text = "Attendee";
             // 
@@ -278,10 +267,9 @@
             // 
             this.listUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listUser.FormattingEnabled = true;
-            this.listUser.Location = new System.Drawing.Point(3, 66);
-            this.listUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listUser.Location = new System.Drawing.Point(3, 53);
             this.listUser.Name = "listUser";
-            this.listUser.Size = new System.Drawing.Size(208, 37);
+            this.listUser.Size = new System.Drawing.Size(185, 33);
             this.listUser.TabIndex = 3;
             // 
             // panel4
@@ -289,18 +277,16 @@
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
-            this.panel4.Location = new System.Drawing.Point(294, 589);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel4.Location = new System.Drawing.Point(261, 471);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(606, 99);
+            this.panel4.Size = new System.Drawing.Size(539, 79);
             this.panel4.TabIndex = 3;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(52, 24);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Location = new System.Drawing.Point(46, 19);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(111, 50);
+            this.btnSave.Size = new System.Drawing.Size(99, 40);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -308,20 +294,18 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(439, 24);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button3.Location = new System.Drawing.Point(390, 19);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(116, 50);
+            this.button3.Size = new System.Drawing.Size(103, 40);
             this.button3.TabIndex = 1;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(244, 24);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Location = new System.Drawing.Point(217, 19);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(119, 50);
+            this.button2.Size = new System.Drawing.Size(106, 40);
             this.button2.TabIndex = 0;
             this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = true;
@@ -329,10 +313,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(218, 64);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button4.Location = new System.Drawing.Point(194, 51);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(65, 44);
+            this.button4.Size = new System.Drawing.Size(58, 35);
             this.button4.TabIndex = 4;
             this.button4.Text = "Add";
             this.button4.UseVisualStyleBackColor = true;
@@ -341,10 +324,9 @@
             // lvAtt
             // 
             this.lvAtt.HideSelection = false;
-            this.lvAtt.Location = new System.Drawing.Point(3, 115);
-            this.lvAtt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lvAtt.Location = new System.Drawing.Point(3, 92);
             this.lvAtt.Name = "lvAtt";
-            this.lvAtt.Size = new System.Drawing.Size(352, 509);
+            this.lvAtt.Size = new System.Drawing.Size(313, 408);
             this.lvAtt.TabIndex = 18;
             this.lvAtt.UseCompatibleStateImageBehavior = false;
             // 
@@ -359,75 +341,71 @@
             this.panel5.Controls.Add(this.lvAtt);
             this.panel5.Controls.Add(this.listUser);
             this.panel5.Controls.Add(this.label5);
-            this.panel5.Location = new System.Drawing.Point(918, 5);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.panel5.Location = new System.Drawing.Point(816, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(692, 629);
+            this.panel5.Size = new System.Drawing.Size(644, 503);
             this.panel5.TabIndex = 4;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(290, 64);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 44);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Clear";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(399, 12);
-            this.label9.Name = "label9";
-            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label9.Size = new System.Drawing.Size(143, 36);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "Reminder";
-            // 
-            // cbxRemind
-            // 
-            this.cbxRemind.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxRemind.FormattingEnabled = true;
-            this.cbxRemind.Location = new System.Drawing.Point(399, 64);
-            this.cbxRemind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbxRemind.Name = "cbxRemind";
-            this.cbxRemind.Size = new System.Drawing.Size(208, 37);
-            this.cbxRemind.TabIndex = 21;
-            // 
-            // lvRemind
-            // 
-            this.lvRemind.HideSelection = false;
-            this.lvRemind.Location = new System.Drawing.Point(399, 115);
-            this.lvRemind.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lvRemind.Name = "lvRemind";
-            this.lvRemind.Size = new System.Drawing.Size(246, 509);
-            this.lvRemind.TabIndex = 22;
-            this.lvRemind.UseCompatibleStateImageBehavior = false;
-            this.lvRemind.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvRemind_MouseDoubleClick);
             // 
             // btnRemind
             // 
-            this.btnRemind.Location = new System.Drawing.Point(558, 20);
+            this.btnRemind.Location = new System.Drawing.Point(546, 51);
+            this.btnRemind.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemind.Name = "btnRemind";
-            this.btnRemind.Size = new System.Drawing.Size(87, 37);
+            this.btnRemind.Size = new System.Drawing.Size(66, 30);
             this.btnRemind.TabIndex = 23;
             this.btnRemind.Text = "Add";
             this.btnRemind.UseVisualStyleBackColor = true;
             this.btnRemind.Click += new System.EventHandler(this.btnRemind_Click);
             // 
+            // lvRemind
+            // 
+            this.lvRemind.HideSelection = false;
+            this.lvRemind.Location = new System.Drawing.Point(355, 92);
+            this.lvRemind.Name = "lvRemind";
+            this.lvRemind.Size = new System.Drawing.Size(257, 408);
+            this.lvRemind.TabIndex = 22;
+            this.lvRemind.UseCompatibleStateImageBehavior = false;
+            this.lvRemind.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvRemind_MouseDoubleClick);
+            // 
+            // cbxRemind
+            // 
+            this.cbxRemind.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxRemind.FormattingEnabled = true;
+            this.cbxRemind.Location = new System.Drawing.Point(355, 51);
+            this.cbxRemind.Name = "cbxRemind";
+            this.cbxRemind.Size = new System.Drawing.Size(185, 33);
+            this.cbxRemind.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(355, 10);
+            this.label9.Name = "label9";
+            this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label9.Size = new System.Drawing.Size(123, 29);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Reminder";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(258, 51);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(58, 35);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Calendar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1611, 684);
+            this.ClientSize = new System.Drawing.Size(1530, 547);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Calendar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calendar";

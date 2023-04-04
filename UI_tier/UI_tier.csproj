@@ -97,6 +97,10 @@
       <Project>{8a3aa0bc-0bc8-4539-beaf-02cf3b62e3b8}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReminderAPI\ReminderAPI.csproj">
+      <Project>{04D0BA14-5413-403F-8BD3-8C10AF4CC9FD}</Project>
+      <Name>ReminderAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

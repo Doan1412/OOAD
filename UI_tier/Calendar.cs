@@ -54,10 +54,10 @@ namespace UI_tier
                 List<Appointment> listAppDate = new List<Appointment>();
                 string date = appointment.StartTime.ToShortDateString();
                 listAppDate = bsa.getListAppointmentByIdAndDateAndStatus(user.Id, DateTime.Parse(date),true);
-                Appointment app = listAppDate.FirstOrDefault(a => (a.StartTime <= appointment.StartTime && a.EndTime >= appointment.StartTime) || (a.StartTime <= appointment.EndTime && a.EndTime >= appointment.EndTime));
+                Appointment app = listAppDate.FirstOrDefault(a => (appointment.StartTime <= a.StartTime && appointment.EndTime >= a.StartTime || appointment.StartTime <= a.EndTime && appointment.EndTime >= a.EndTime));
                 if (app != null)
                 {
-                    var res = MessageBox.Show("Bạn đã có lịch vào khoảng thời gian này, bạn có muốn thay thế lịch đã có", "Warning", MessageBoxButtons.YesNo);
+                    var res = MessageBox.Show("Bạn có group meeting trùng vào lịch đã có lịch đã có lúc "+app.StartTime+" , bạn có muốn tham gia vào group meeting không", "Warning", MessageBoxButtons.YesNo);
                     if (res == DialogResult.Yes)
                     {
                         bsa.updateStatus(user.Id, appointment.Id, true);
